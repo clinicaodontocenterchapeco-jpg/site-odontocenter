@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.vite/
 /.vinext/
 /out/
 
@@ -28,18 +29,21 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
+!.env.example
 
 # vercel
 .vercel
 
 # typescript
 next-env.d.ts
+*.tsbuildinfo
 /dist/
 /.wrangler/
 # Checkout-local execution profile and tool state; never publish them.
 /.sites-runtime/
+/.openai/
 /.agents/
 /.codex/
 /outputs/
