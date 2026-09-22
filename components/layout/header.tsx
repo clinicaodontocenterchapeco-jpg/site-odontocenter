@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import { TrackedLink } from "@/components/ui/tracked-link";
 import { navigation, whatsappUrl } from "@/lib/site";
-import { ArrowRight, Menu, MoveUpRight } from "lucide-react";
+import { ArrowRight, Menu, MoveUpRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Header() {
@@ -34,7 +34,7 @@ export function Header() {
           : "border-transparent bg-background"
       }`}
     >
-      <div className="site-container flex h-[5.25rem] items-center justify-between gap-8 lg:h-[6.25rem]">
+      <div className="site-container flex h-[4.75rem] items-center justify-between gap-8 lg:h-[6.25rem]">
         <Brand priority />
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-[clamp(2rem,3.45vw,3.2rem)] lg:flex">
@@ -72,30 +72,42 @@ export function Header() {
                 variant="outline"
                 size="icon-lg"
                 aria-label="Abrir menu"
-                className="size-11 rounded-full border-foreground/15 bg-transparent shadow-none lg:hidden"
+                className="size-12 rounded-full border-brand/20 bg-white/70 text-brand shadow-none lg:hidden"
               >
                 <Menu className="size-[1.15rem]" strokeWidth={1.6} />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full max-w-none border-0 bg-background p-0 shadow-none sm:max-w-none"
+              showCloseButton={false}
+              style={{ width: "100%", maxWidth: "none" }}
+              className="!w-full !max-w-none border-0 bg-[#f5f8fa] p-0 shadow-none sm:!max-w-none"
             >
-              <SheetHeader className="site-container flex h-[5.25rem] flex-row items-center border-b border-border/70 py-0">
+              <SheetHeader className="site-container flex h-[4.75rem] flex-row items-center border-b border-border/70 py-0">
                 <Brand />
+                <SheetClose asChild>
+                  <Button
+                    variant="outline"
+                    size="icon-lg"
+                    aria-label="Fechar menu"
+                    className="ml-auto size-11 rounded-full border-brand/20 bg-white text-brand shadow-none"
+                  >
+                    <X className="size-[1.1rem]" strokeWidth={1.6} />
+                  </Button>
+                </SheetClose>
                 <SheetTitle className="sr-only">Menu principal</SheetTitle>
                 <SheetDescription className="sr-only">
                   Navegue pelas seções do site da Odonto Center Chapecó.
                 </SheetDescription>
               </SheetHeader>
 
-              <div className="site-container flex flex-1 flex-col justify-between py-10 sm:py-14">
+              <div className="site-container flex flex-1 flex-col justify-between py-8 sm:py-12">
                 <nav aria-label="Navegação mobile" className="flex flex-col">
                   {navigation.map((item, index) => (
                     <SheetClose asChild key={item.label}>
                       <a
                         href={item.href}
-                        className="focus-ring group flex min-h-14 items-center justify-between border-b border-border py-3 text-[clamp(1.55rem,7vw,2.5rem)] font-medium tracking-[-0.04em]"
+                        className="focus-ring group flex min-h-[4.25rem] items-center justify-between border-b border-brand/12 py-3 text-[clamp(1.6rem,7vw,2.35rem)] font-medium tracking-[-0.045em]"
                       >
                         <span>
                           <small className="mr-4 align-middle text-[0.68rem] font-medium tracking-widest text-muted">
@@ -109,7 +121,7 @@ export function Header() {
                   ))}
                 </nav>
 
-                <Button asChild className="mt-10 h-14 rounded-full bg-brand text-white">
+                <Button asChild className="mt-8 h-14 w-full rounded-full bg-brand text-[0.95rem] text-white">
                   <TrackedLink
                     href={whatsappUrl}
                     eventName="header_schedule_click"

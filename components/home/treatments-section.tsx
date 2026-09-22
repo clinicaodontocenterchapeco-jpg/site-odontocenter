@@ -1,6 +1,7 @@
 "use client";
 
 import { TreatmentList } from "@/components/treatments/treatment-list";
+import { MobileTreatments } from "@/components/mobile/mobile-sections";
 import { TrackedLink } from "@/components/ui/tracked-link";
 import { treatments } from "@/data/treatments";
 import { useRevealOnce } from "@/hooks/use-reveal-once";
@@ -28,10 +29,11 @@ export function TreatmentsSection() {
       ref={sectionRef}
       id="tratamentos"
       aria-labelledby="treatments-title"
-      className="relative hidden overflow-hidden border-t border-brand/10 bg-[#f3f6f7] py-[4.75rem] lg:block"
+      className="relative overflow-hidden border-t border-brand/10 bg-[#f3f6f7] lg:py-[4.75rem]"
     >
+      <MobileTreatments />
       <div
-        className="treatments-motion-image pointer-events-none absolute bottom-0 left-0 z-0 h-[clamp(18.5rem,24vw,23.5rem)] w-[min(46vw,46rem)] overflow-hidden"
+        className="treatments-motion-image pointer-events-none absolute bottom-0 left-0 z-0 hidden h-[clamp(18.5rem,24vw,23.5rem)] w-[min(46vw,46rem)] overflow-hidden lg:block"
         aria-hidden="true"
       >
         <div
@@ -63,7 +65,7 @@ export function TreatmentsSection() {
         <div className="absolute bottom-[4.4rem] -left-[8%] h-[15rem] w-[108%] rotate-[5deg] rounded-[50%] border-t border-brand/12" />
       </div>
 
-      <div className="site-container relative z-10 grid grid-cols-[minmax(29rem,0.88fr)_minmax(37rem,1.12fr)] items-start gap-[clamp(3rem,5vw,4.75rem)]">
+      <div className="site-container relative z-10 hidden grid-cols-[minmax(29rem,0.88fr)_minmax(37rem,1.12fr)] items-start gap-[clamp(3rem,5vw,4.75rem)] lg:grid">
         <div className="relative min-h-[49rem] pt-1">
           <p className="editorial-label treatments-motion-eyebrow">Tratamentos</p>
 

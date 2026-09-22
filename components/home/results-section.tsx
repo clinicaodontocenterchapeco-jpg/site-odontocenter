@@ -3,6 +3,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
+import { MobileResults } from "@/components/mobile/mobile-sections";
 
 type CaseStudy = {
   number: string;
@@ -231,9 +232,10 @@ export function ResultsSection() {
       ref={sectionRef}
       id="resultados"
       aria-labelledby="results-title"
-      className="hidden border-t border-border/65 bg-background pb-[3.25rem] pt-8 lg:block"
+      className="border-t border-border/65 bg-background lg:pb-[3.25rem] lg:pt-8"
     >
-      <div className="site-container">
+      <MobileResults />
+      <div className="site-container hidden lg:block">
         <div className="grid grid-cols-[minmax(20rem,0.46fr)_minmax(0,1fr)] items-start gap-14">
           <div className="pt-1">
             <p className="editorial-label results-motion-eyebrow">Resultados reais</p>

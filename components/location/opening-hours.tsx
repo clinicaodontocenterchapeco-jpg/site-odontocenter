@@ -1,5 +1,5 @@
 import { clinicLocation } from "@/data/location";
-import { Clock3 } from "lucide-react";
+import { Clock } from "lucide-react";
 
 export function OpeningHours() {
   return (
@@ -10,7 +10,7 @@ export function OpeningHours() {
 
       <div className="mt-3 grid grid-cols-[3.25rem_minmax(0,1fr)] gap-4">
         <span className="grid size-[3.25rem] place-items-center rounded-full bg-[#e2eef4] text-brand">
-          <Clock3 className="size-[1.35rem]" strokeWidth={1.7} aria-hidden="true" />
+          <Clock className="size-[1.35rem]" strokeWidth={1.7} aria-hidden="true" />
         </span>
 
         <dl className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-7 gap-y-1 text-[0.82rem] leading-[1.45] text-foreground/68">

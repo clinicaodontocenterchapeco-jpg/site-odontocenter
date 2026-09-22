@@ -1,6 +1,7 @@
 "use client";
 
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
+import { MobileFooter } from "@/components/mobile/mobile-sections";
 import { TrackedLink } from "@/components/ui/tracked-link";
 import { clinicLocation } from "@/data/location";
 import { whatsappUrl } from "@/lib/site";
@@ -9,7 +10,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   ChevronRight,
-  Clock3,
+  Clock,
   MapPin,
 } from "lucide-react";
 import Image from "next/image";
@@ -53,7 +54,7 @@ export function SiteFooter() {
   const footerRef = useRevealOnce<HTMLElement>({ classPrefix: "footer-motion", settleAfter: 1850 });
 
   return (
-    <footer ref={footerRef} className="relative hidden overflow-hidden border-t border-white/15 bg-brand text-white lg:block">
+    <footer ref={footerRef} className="relative overflow-hidden border-t border-white/15 bg-brand-deep text-white lg:bg-brand">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <svg
           viewBox="0 0 1440 720"
@@ -66,7 +67,8 @@ export function SiteFooter() {
         </svg>
       </div>
 
-      <div className="site-container relative z-10">
+      <MobileFooter />
+      <div className="site-container relative z-10 hidden lg:block">
         <div className="grid min-h-[31.5rem] grid-cols-[1.38fr_0.88fr_0.62fr_1.08fr] items-start gap-[clamp(2rem,3vw,3.4rem)] pb-[3.15rem] pt-[4.1rem]">
           <div className="min-w-0">
             <a
@@ -180,7 +182,7 @@ export function SiteFooter() {
             <div className="footer-motion-contact-item mt-5 border-t border-white/18 pt-4">
               <div className="flex items-start gap-3">
                 <ContactIcon>
-                  <Clock3 className="size-[1.12rem]" strokeWidth={1.7} aria-hidden="true" />
+                  <Clock className="size-[1.12rem]" strokeWidth={1.7} aria-hidden="true" />
                 </ContactIcon>
                 <div className="pt-0.5">
                   <p className="text-[0.52rem] uppercase tracking-[0.22em] text-white/50">Atendimento</p>

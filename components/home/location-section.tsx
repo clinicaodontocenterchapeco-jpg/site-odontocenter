@@ -1,6 +1,7 @@
 "use client";
 
 import { LocationMap } from "@/components/location/location-map";
+import { MobileLocation } from "@/components/mobile/mobile-sections";
 import { OpeningHours } from "@/components/location/opening-hours";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { TrackedLink } from "@/components/ui/tracked-link";
@@ -18,14 +19,15 @@ export function LocationSection() {
       ref={sectionRef}
       id="localizacao"
       aria-labelledby="location-title"
-      className="relative hidden overflow-hidden border-t border-brand/10 bg-[#f3f7f9] py-[clamp(4.25rem,4.75vw,4.75rem)] lg:block"
+      className="relative overflow-hidden border-t border-brand/10 bg-[#f3f7f9] lg:py-[clamp(4.25rem,4.75vw,4.75rem)]"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      <MobileLocation />
+      <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
         <div className="absolute -bottom-[38rem] right-[-8rem] size-[58rem] rounded-full border border-brand/[0.09]" />
         <div className="absolute -bottom-[31rem] right-[-3rem] size-[46rem] rounded-full border border-brand/[0.06]" />
       </div>
 
-      <div className="site-container relative z-10 grid grid-cols-[minmax(24rem,0.72fr)_minmax(0,1.28fr)] items-start gap-[clamp(3.25rem,5vw,5.5rem)]">
+      <div className="site-container relative z-10 hidden grid-cols-[minmax(24rem,0.72fr)_minmax(0,1.28fr)] items-start gap-[clamp(3.25rem,5vw,5.5rem)] lg:grid">
         <div className="flex min-h-[48.5rem] flex-col pt-1">
           <p className="editorial-label location-motion-eyebrow">Localização</p>
 

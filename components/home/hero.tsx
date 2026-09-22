@@ -1,6 +1,7 @@
 import { AnimatedSmileCounter } from "@/components/home/animated-smile-counter";
 import { ToothMark } from "@/components/icons/tooth-mark";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
+import { MobileHero } from "@/components/mobile/mobile-sections";
 import { Button } from "@/components/ui/button";
 import { TrackedLink } from "@/components/ui/tracked-link";
 import { whatsappUrl } from "@/lib/site";
@@ -9,7 +10,7 @@ import {
   ArrowUpRight,
   Heart,
   MapPin,
-  UsersRound,
+  Users,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -22,7 +23,7 @@ const heroBenefits = [
   {
     title: "Equipe especializada",
     description: "Profissionais qualificados e em constante atualização",
-    Icon: UsersRound,
+    Icon: Users,
   },
   {
     title: "Atendimento humanizado",
@@ -36,9 +37,11 @@ export function Hero() {
     <section
       id="inicio"
       aria-label="Referência em transformar sorrisos"
-      className="border-b border-border/80 pt-[5.25rem] lg:pt-[6.25rem]"
+      className="border-b border-border/80 pt-[4.75rem] lg:pt-[6.25rem]"
     >
-      <div className="site-container grid grid-cols-1 gap-8 py-8 lg:hidden">
+      <MobileHero />
+
+      <div className="hidden">
         <div className="flex flex-col">
           <div>
             <p className="editorial-label">Chapecó · Santa Catarina</p>

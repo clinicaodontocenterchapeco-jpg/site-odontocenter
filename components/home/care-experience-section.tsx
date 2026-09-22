@@ -1,15 +1,16 @@
 "use client";
 
 import { TrackedLink } from "@/components/ui/tracked-link";
+import { MobileCare } from "@/components/mobile/mobile-sections";
 import { useRevealOnce } from "@/hooks/use-reveal-once";
 import { whatsappUrl } from "@/lib/site";
-import { ArrowRight, Heart, Sparkles, UsersRound } from "lucide-react";
+import { ArrowRight, Heart, Star, Users } from "lucide-react";
 import Image from "next/image";
 
 const careDifferentials = [
   { label: "Acolhimento real", icon: Heart },
-  { label: "Experiência humanizada", icon: UsersRound },
-  { label: "Cuidado em cada detalhe", icon: Sparkles },
+  { label: "Experiência humanizada", icon: Users },
+  { label: "Cuidado em cada detalhe", icon: Star },
 ] as const;
 
 const carePhotos = {
@@ -37,17 +38,18 @@ export function CareExperienceSection() {
   return (
     <section
       ref={sectionRef}
-      id="atendimento"
+      id="especialistas"
       aria-labelledby="care-experience-title"
-      className="relative hidden overflow-hidden border-t border-brand/10 bg-[#f7f8f8] py-[clamp(4.75rem,6vw,6.25rem)] lg:block"
+      className="relative overflow-hidden border-t border-brand/10 bg-[#f7f8f8] lg:py-[clamp(4.75rem,6vw,6.25rem)]"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      <MobileCare />
+      <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
         <div className="absolute -top-[28rem] left-[13%] size-[42rem] rounded-full border border-brand/[0.08]" />
         <div className="absolute -bottom-[33rem] left-[20%] size-[56rem] rounded-full bg-white/65" />
         <div className="absolute -right-[23rem] -top-[25rem] size-[53rem] rounded-full bg-[#e9f0f3]/75" />
       </div>
 
-      <div className="site-container relative z-10 grid grid-cols-[minmax(0,0.91fr)_minmax(0,1.09fr)] items-center gap-[clamp(3rem,5vw,5.25rem)]">
+      <div className="site-container relative z-10 hidden grid-cols-[minmax(0,0.91fr)_minmax(0,1.09fr)] items-center gap-[clamp(3rem,5vw,5.25rem)] lg:grid">
         <div className="flex min-h-[clamp(35rem,45vw,40.5rem)] flex-col justify-center py-3">
           <p className="editorial-label care-motion-eyebrow">Atendimento</p>
 

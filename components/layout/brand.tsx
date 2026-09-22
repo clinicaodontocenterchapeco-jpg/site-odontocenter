@@ -13,7 +13,7 @@ export function Brand({ priority = false }: { priority?: boolean }) {
         height={71}
         priority={priority}
         alt="Odonto Center Clínica Odontológica"
-        className="h-auto w-[10.5rem] lg:w-[15.5rem]"
+        className="h-auto w-[9.65rem] lg:w-[15.5rem]"
       />
     </a>
   );

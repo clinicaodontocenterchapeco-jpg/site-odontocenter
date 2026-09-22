@@ -2,6 +2,7 @@
 
 import { GoogleRatingPanel } from "@/components/reviews/google-rating-panel";
 import { ReviewsCarousel } from "@/components/reviews/reviews-carousel";
+import { MobileReviews } from "@/components/mobile/mobile-sections";
 import { useRevealOnce } from "@/hooks/use-reveal-once";
 import { getGoogleReviews } from "@/lib/google-reviews/provider";
 
@@ -14,9 +15,10 @@ export function ReviewsSection() {
       ref={sectionRef}
       id="avaliacoes"
       aria-labelledby="reviews-title"
-      className="hidden border-t border-border/65 bg-surface py-[4.5rem] lg:block"
+      className="border-t border-border/65 bg-surface lg:py-[4.5rem]"
     >
-      <div className="site-container">
+      <MobileReviews />
+      <div className="site-container hidden lg:block">
         <div className="grid grid-cols-[minmax(29rem,0.82fr)_minmax(0,1fr)] items-start gap-14">
           <div className="pt-1">
             <p className="editorial-label reviews-motion-eyebrow">Avaliações Google</p>
