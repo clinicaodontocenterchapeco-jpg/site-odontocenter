@@ -1,0 +1,988 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../vendor/shadcn-tailwind-4.13.0.css";
+
+:root {
+  --background: #f7f6f2;
+  --surface: #ffffff;
+  --foreground: #151515;
+  --muted: #666660;
+  --border: #deddd7;
+  --brand-primary: #0873af;
+  --brand-deep: #075a89;
+  --primary: var(--brand-primary);
+  --primary-foreground: #ffffff;
+  --secondary: #eeede8;
+  --secondary-foreground: #151515;
+  --accent: #e7f0f4;
+  --accent-foreground: #075a89;
+  --destructive: #b42318;
+  --input: #deddd7;
+  --ring: #0873af;
+  --card: #ffffff;
+  --card-foreground: #151515;
+  --popover: #ffffff;
+  --popover-foreground: #151515;
+  --muted-foreground: #666660;
+  --radius: 0.875rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-brand: var(--brand-primary);
+  --color-brand-deep: var(--brand-deep);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --font-sans: var(--font-geist), "Helvetica Neue", sans-serif;
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#inicio,
+#a-clinica,
+#resultados,
+#tratamentos,
+#atendimento,
+#especialistas,
+#avaliacoes,
+#localizacao {
+  scroll-margin-top: 7rem;
+}
+
+body {
+  min-width: 320px;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist), "Helvetica Neue", sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand-primary) 20%, transparent);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-container {
+  width: min(100%, 90rem);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3.75rem);
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 100;
+  transform: translateY(-160%);
+  border-radius: 999px;
+  background: var(--foreground);
+  color: white;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.editorial-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--brand-deep);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.editorial-label::before {
+  width: 1.8rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 4px;
+}
+
+.hero-counter-reduced {
+  display: none;
+}
+
+@keyframes hero-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-reveal-subtle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-image-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero-motion-image {
+    animation: hero-image-reveal 1050ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: center;
+    will-change: opacity, transform;
+  }
+
+  .hero-motion-eyebrow,
+  .hero-motion-title-primary,
+  .hero-motion-title-accent,
+  .hero-motion-copy,
+  .hero-motion-ctas,
+  .hero-motion-microcopy {
+    animation: hero-reveal-up 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: opacity, transform;
+  }
+
+  .hero-motion-eyebrow {
+    animation-delay: 100ms;
+  }
+
+  .hero-motion-title-primary {
+    animation-delay: 180ms;
+  }
+
+  .hero-motion-title-accent {
+    animation-delay: 280ms;
+  }
+
+  .hero-motion-copy {
+    animation-delay: 420ms;
+  }
+
+  .hero-motion-ctas {
+    animation-name: hero-reveal-subtle;
+    animation-delay: 650ms;
+    animation-duration: 620ms;
+  }
+
+  .hero-motion-microcopy {
+    animation-name: hero-reveal-subtle;
+    animation-delay: 800ms;
+    animation-duration: 600ms;
+  }
+
+  .hero-counter-line {
+    transform: scaleX(0);
+    transition: transform 820ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .hero-counter-line-left {
+    transform-origin: left center;
+  }
+
+  .hero-counter-line-right {
+    transform-origin: right center;
+  }
+
+  .hero-counter-line.is-active {
+    transform: scaleX(1);
+  }
+
+  .hero-counter-label {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 580ms ease-out 120ms,
+      transform 580ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+    will-change: opacity, transform;
+  }
+
+  .hero-counter-label.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .results-motion-ready .results-motion-eyebrow,
+  .results-motion-ready .results-motion-headline,
+  .results-motion-ready .results-motion-copy,
+  .results-motion-ready .results-motion-cta,
+  .results-motion-ready .results-motion-featured,
+  .results-motion-ready .results-motion-label,
+  .results-motion-ready .results-motion-case-bar,
+  .results-motion-ready .results-motion-tab,
+  .results-motion-ready .results-motion-editorial,
+  .results-motion-ready .results-motion-secondary,
+  .results-motion-ready .results-motion-footer {
+    opacity: 0;
+  }
+
+  .results-motion-ready .results-motion-eyebrow,
+  .results-motion-ready .results-motion-headline,
+  .results-motion-ready .results-motion-copy,
+  .results-motion-ready .results-motion-cta,
+  .results-motion-ready .results-motion-featured,
+  .results-motion-ready .results-motion-label,
+  .results-motion-ready .results-motion-case-bar,
+  .results-motion-ready .results-motion-tab,
+  .results-motion-ready .results-motion-secondary {
+    transform: translateY(8px);
+  }
+
+  .results-motion-ready .results-motion-headline {
+    transform: translateY(18px);
+  }
+
+  .results-motion-ready .results-motion-copy {
+    transform: translateY(10px);
+  }
+
+  .results-motion-ready .results-motion-featured {
+    transform: translateY(18px) scale(0.99);
+  }
+
+  .results-motion-ready .results-motion-secondary {
+    transform: translateY(20px);
+  }
+
+  .results-motion-ready .results-motion-divider {
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: top center;
+  }
+
+  .results-motion-ready .results-motion-tab-underline,
+  .results-motion-ready .results-motion-footer-line,
+  .results-motion-ready .results-motion-editorial::before {
+    transform: scaleX(0);
+  }
+
+  .results-motion-ready .results-motion-eyebrow {
+    transition:
+      opacity 500ms ease-out,
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .results-motion-ready .results-motion-headline {
+    transition:
+      opacity 780ms ease-out 100ms,
+      transform 780ms cubic-bezier(0.22, 1, 0.36, 1) 100ms;
+  }
+
+  .results-motion-ready .results-motion-copy {
+    transition:
+      opacity 600ms ease-out 240ms,
+      transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 240ms;
+  }
+
+  .results-motion-ready .results-motion-cta {
+    transition:
+      opacity 550ms ease-out 360ms,
+      transform 550ms cubic-bezier(0.22, 1, 0.36, 1) 360ms,
+      background-color 250ms ease;
+  }
+
+  .results-motion-ready .results-motion-featured {
+    transition:
+      opacity 900ms ease-out 200ms,
+      transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms,
+      border-color 260ms ease;
+  }
+
+  .results-motion-ready .results-motion-divider {
+    transition:
+      opacity 720ms ease-out 600ms,
+      transform 720ms cubic-bezier(0.22, 1, 0.36, 1) 600ms;
+  }
+
+  .results-motion-ready .results-motion-label {
+    transition:
+      opacity 460ms ease-out 720ms,
+      transform 460ms cubic-bezier(0.22, 1, 0.36, 1) 720ms;
+  }
+
+  .results-motion-ready .results-motion-label-after {
+    transition-delay: 800ms;
+  }
+
+  .results-motion-ready .results-motion-case-bar {
+    transition:
+      opacity 560ms ease-out 850ms,
+      transform 560ms cubic-bezier(0.22, 1, 0.36, 1) 850ms;
+  }
+
+  .results-motion-ready .results-motion-tab {
+    --results-tab-delay: 800ms;
+    transition:
+      color 200ms ease,
+      opacity 500ms ease-out var(--results-tab-delay),
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1) var(--results-tab-delay);
+  }
+
+  .results-motion-ready .results-motion-tab:nth-child(2) {
+    --results-tab-delay: 860ms;
+  }
+
+  .results-motion-ready .results-motion-tab:nth-child(3) {
+    --results-tab-delay: 920ms;
+  }
+
+  .results-motion-ready .results-motion-tab:nth-child(4) {
+    --results-tab-delay: 980ms;
+  }
+
+  .results-motion-ready .results-motion-tab-underline {
+    transform-origin: left center;
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 830ms;
+  }
+
+  .results-motion-ready .results-motion-editorial {
+    transition: opacity 600ms ease-out 800ms;
+  }
+
+  .results-motion-ready .results-motion-editorial::before {
+    transform-origin: left center;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 800ms;
+  }
+
+  .results-motion-ready .results-motion-secondary {
+    --results-secondary-delay: 950ms;
+    transition:
+      opacity 820ms ease-out var(--results-secondary-delay),
+      transform 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--results-secondary-delay),
+      border-color 260ms ease;
+  }
+
+  .results-motion-ready .results-motion-secondary-03 {
+    --results-secondary-delay: 1050ms;
+  }
+
+  .results-motion-ready .results-motion-footer {
+    transition: opacity 650ms ease-out 1200ms;
+  }
+
+  .results-motion-ready .results-motion-footer-line {
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 1200ms;
+  }
+
+  .results-motion-preparing .results-motion-eyebrow,
+  .results-motion-preparing .results-motion-headline,
+  .results-motion-preparing .results-motion-copy,
+  .results-motion-preparing .results-motion-cta,
+  .results-motion-preparing .results-motion-featured,
+  .results-motion-preparing .results-motion-divider,
+  .results-motion-preparing .results-motion-label,
+  .results-motion-preparing .results-motion-case-bar,
+  .results-motion-preparing .results-motion-tab,
+  .results-motion-preparing .results-motion-tab-underline,
+  .results-motion-preparing .results-motion-editorial,
+  .results-motion-preparing .results-motion-editorial::before,
+  .results-motion-preparing .results-motion-secondary,
+  .results-motion-preparing .results-motion-footer,
+  .results-motion-preparing .results-motion-footer-line {
+    transition: none !important;
+  }
+
+  .results-motion-visible .results-motion-eyebrow,
+  .results-motion-visible .results-motion-headline,
+  .results-motion-visible .results-motion-copy,
+  .results-motion-visible .results-motion-cta,
+  .results-motion-visible .results-motion-featured,
+  .results-motion-visible .results-motion-label,
+  .results-motion-visible .results-motion-case-bar,
+  .results-motion-visible .results-motion-tab,
+  .results-motion-visible .results-motion-editorial,
+  .results-motion-visible .results-motion-secondary,
+  .results-motion-visible .results-motion-footer {
+    opacity: 1;
+    transform: none;
+  }
+
+  .results-motion-visible .results-motion-divider {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  .results-motion-visible .results-motion-tab-underline,
+  .results-motion-visible .results-motion-footer-line,
+  .results-motion-visible .results-motion-editorial::before {
+    transform: scaleX(1);
+  }
+
+  .results-motion-settled .results-motion-cta {
+    transition:
+      background-color 250ms ease,
+      transform 250ms ease;
+  }
+
+  .results-motion-settled .results-motion-tab {
+    transition: color 200ms ease;
+  }
+}
+
+@media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
+  .results-case-image {
+    transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .results-case-card:hover .results-case-image {
+    transform: scale(1.01);
+  }
+
+  .results-case-card:hover {
+    border-color: color-mix(in srgb, var(--border) 55%, transparent);
+  }
+
+  .results-motion-settled .results-motion-cta:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (min-width: 64rem) {
+  /* Section 03 — Google reviews */
+  .reviews-motion-ready .reviews-motion-eyebrow,
+  .reviews-motion-ready .reviews-motion-heading,
+  .reviews-motion-ready .reviews-motion-copy,
+  .reviews-motion-ready .reviews-motion-rating-panel,
+  .reviews-motion-ready .reviews-motion-card,
+  .reviews-motion-ready .reviews-motion-controls,
+  .reviews-motion-ready .reviews-motion-footer {
+    opacity: 0;
+  }
+
+  .reviews-motion-ready .reviews-motion-eyebrow,
+  .reviews-motion-ready .reviews-motion-copy,
+  .reviews-motion-ready .reviews-motion-controls,
+  .reviews-motion-ready .reviews-motion-footer {
+    transform: translateY(8px);
+  }
+
+  .reviews-motion-ready .reviews-motion-heading,
+  .reviews-motion-ready .reviews-motion-card {
+    transform: translateY(16px);
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-panel {
+    transform: translateY(14px) scale(0.99);
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-star {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  .reviews-motion-ready .reviews-motion-eyebrow {
+    transition:
+      opacity 500ms ease-out,
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reviews-motion-ready .reviews-motion-heading {
+    transition:
+      opacity 760ms ease-out 100ms,
+      transform 760ms cubic-bezier(0.22, 1, 0.36, 1) 100ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-copy {
+    transition:
+      opacity 620ms ease-out 220ms,
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1) 220ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-panel {
+    transition:
+      opacity 820ms ease-out 280ms,
+      transform 820ms cubic-bezier(0.16, 1, 0.3, 1) 280ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-star {
+    transition:
+      opacity 280ms ease-out 480ms,
+      transform 280ms cubic-bezier(0.22, 1, 0.36, 1) 480ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-star:nth-child(2) {
+    transition-delay: 540ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-star:nth-child(3) {
+    transition-delay: 600ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-star:nth-child(4) {
+    transition-delay: 660ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-rating-star:nth-child(5) {
+    transition-delay: 720ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-card {
+    --reviews-card-delay: 500ms;
+    transition:
+      opacity 760ms ease-out var(--reviews-card-delay),
+      transform 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--reviews-card-delay),
+      border-color 250ms ease;
+  }
+
+  .reviews-motion-ready .reviews-motion-card:nth-child(2) {
+    --reviews-card-delay: 600ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-card:nth-child(3) {
+    --reviews-card-delay: 700ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-controls {
+    transition:
+      opacity 550ms ease-out 850ms,
+      transform 550ms cubic-bezier(0.22, 1, 0.36, 1) 850ms;
+  }
+
+  .reviews-motion-ready .reviews-motion-footer {
+    transition:
+      opacity 580ms ease-out 950ms,
+      transform 580ms cubic-bezier(0.22, 1, 0.36, 1) 950ms;
+  }
+
+  .reviews-motion-visible .reviews-motion-eyebrow,
+  .reviews-motion-visible .reviews-motion-heading,
+  .reviews-motion-visible .reviews-motion-copy,
+  .reviews-motion-visible .reviews-motion-rating-panel,
+  .reviews-motion-visible .reviews-motion-card,
+  .reviews-motion-visible .reviews-motion-controls,
+  .reviews-motion-visible .reviews-motion-footer,
+  .reviews-motion-visible .reviews-motion-rating-star {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reviews-motion-settled .reviews-motion-card {
+    transition:
+      transform 250ms ease,
+      border-color 250ms ease;
+  }
+
+  .reviews-motion-avatar {
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Section 04 — Treatments */
+  .treatments-motion-ready .treatments-motion-eyebrow,
+  .treatments-motion-ready .treatments-motion-heading,
+  .treatments-motion-ready .treatments-motion-copy,
+  .treatments-motion-ready .treatments-motion-differential,
+  .treatments-motion-ready .treatments-motion-cta,
+  .treatments-motion-ready .treatments-motion-item,
+  .treatments-motion-ready .treatments-motion-image,
+  .treatments-motion-ready .treatments-motion-final {
+    opacity: 0;
+  }
+
+  .treatments-motion-ready .treatments-motion-eyebrow,
+  .treatments-motion-ready .treatments-motion-copy,
+  .treatments-motion-ready .treatments-motion-differential,
+  .treatments-motion-ready .treatments-motion-cta {
+    transform: translateY(8px);
+  }
+
+  .treatments-motion-ready .treatments-motion-heading,
+  .treatments-motion-ready .treatments-motion-image {
+    transform: translateY(18px);
+  }
+
+  .treatments-motion-ready .treatments-motion-image {
+    transform: translateY(18px) scale(0.99);
+  }
+
+  .treatments-motion-ready .treatments-motion-item {
+    transform: translateY(10px);
+  }
+
+  .treatments-motion-ready .treatments-motion-final {
+    transform: translateY(12px);
+  }
+
+  .treatments-motion-ready .treatments-motion-eyebrow {
+    transition: opacity 500ms ease-out, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .treatments-motion-ready .treatments-motion-heading {
+    transition: opacity 760ms ease-out 100ms, transform 760ms cubic-bezier(0.22, 1, 0.36, 1) 100ms;
+  }
+
+  .treatments-motion-ready .treatments-motion-copy {
+    transition: opacity 600ms ease-out 220ms, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 220ms;
+  }
+
+  .treatments-motion-ready .treatments-motion-image {
+    transition: opacity 1000ms ease-out 120ms, transform 1000ms cubic-bezier(0.16, 1, 0.3, 1) 120ms;
+    transform-origin: center;
+  }
+
+  .treatments-motion-ready .treatments-motion-differential {
+    --treatments-differential-delay: 350ms;
+    transition: opacity 560ms ease-out var(--treatments-differential-delay), transform 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--treatments-differential-delay);
+  }
+
+  .treatments-motion-ready .treatments-motion-differential:nth-child(2) {
+    --treatments-differential-delay: 430ms;
+  }
+
+  .treatments-motion-ready .treatments-motion-differential:nth-child(3) {
+    --treatments-differential-delay: 510ms;
+  }
+
+  .treatments-motion-ready .treatments-motion-cta {
+    transition: opacity 560ms ease-out 600ms, transform 560ms cubic-bezier(0.22, 1, 0.36, 1) 600ms, background-color 250ms ease;
+  }
+
+  .treatments-motion-ready .treatments-motion-item {
+    --treatments-item-delay: 280ms;
+    transition: opacity 560ms ease-out var(--treatments-item-delay), transform 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--treatments-item-delay);
+  }
+
+  .treatments-motion-ready .treatments-motion-item:nth-child(2) { --treatments-item-delay: 340ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(3) { --treatments-item-delay: 400ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(4) { --treatments-item-delay: 460ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(5) { --treatments-item-delay: 520ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(6) { --treatments-item-delay: 580ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(7) { --treatments-item-delay: 640ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(8) { --treatments-item-delay: 700ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(9) { --treatments-item-delay: 760ms; }
+  .treatments-motion-ready .treatments-motion-item:nth-child(10) { --treatments-item-delay: 820ms; }
+
+  .treatments-motion-ready .treatments-motion-final {
+    transition: opacity 650ms ease-out 980ms, transform 650ms cubic-bezier(0.22, 1, 0.36, 1) 980ms;
+  }
+
+  .treatments-motion-visible .treatments-motion-eyebrow,
+  .treatments-motion-visible .treatments-motion-heading,
+  .treatments-motion-visible .treatments-motion-copy,
+  .treatments-motion-visible .treatments-motion-differential,
+  .treatments-motion-visible .treatments-motion-cta,
+  .treatments-motion-visible .treatments-motion-item,
+  .treatments-motion-visible .treatments-motion-image,
+  .treatments-motion-visible .treatments-motion-final {
+    opacity: 1;
+    transform: none;
+  }
+
+  .treatments-motion-settled .treatments-motion-cta {
+    transition: background-color 250ms ease, transform 250ms ease;
+  }
+
+  /* Section 05 — Care experience */
+  .care-motion-ready .care-motion-eyebrow,
+  .care-motion-ready .care-motion-heading,
+  .care-motion-ready .care-motion-copy,
+  .care-motion-ready .care-motion-differential,
+  .care-motion-ready .care-motion-cta,
+  .care-motion-ready .care-motion-editorial,
+  .care-motion-ready .care-motion-photo,
+  .care-motion-ready .care-motion-handwritten {
+    opacity: 0;
+  }
+
+  .care-motion-ready .care-motion-eyebrow,
+  .care-motion-ready .care-motion-copy,
+  .care-motion-ready .care-motion-differential,
+  .care-motion-ready .care-motion-cta,
+  .care-motion-ready .care-motion-editorial {
+    transform: translateY(8px);
+  }
+
+  .care-motion-ready .care-motion-heading {
+    transform: translateY(16px);
+  }
+
+  .care-motion-ready .care-motion-photo-main {
+    transform: scale(0.985);
+  }
+
+  .care-motion-ready .care-motion-photo-small-1,
+  .care-motion-ready .care-motion-photo-small-2,
+  .care-motion-ready .care-motion-photo-small-3 {
+    transform: translateY(12px);
+  }
+
+  .care-motion-ready .care-motion-handwritten {
+    transform: translateX(8px);
+  }
+
+  .care-motion-ready .care-motion-eyebrow { transition: opacity 500ms ease-out, transform 500ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .care-motion-ready .care-motion-heading { transition: opacity 760ms ease-out 100ms, transform 760ms cubic-bezier(0.22, 1, 0.36, 1) 100ms; }
+  .care-motion-ready .care-motion-copy { transition: opacity 620ms ease-out 220ms, transform 620ms cubic-bezier(0.22, 1, 0.36, 1) 220ms; }
+
+  .care-motion-ready .care-motion-differential {
+    --care-differential-delay: 360ms;
+    transition: opacity 560ms ease-out var(--care-differential-delay), transform 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--care-differential-delay);
+  }
+
+  .care-motion-ready .care-motion-differential:nth-child(2) { --care-differential-delay: 440ms; }
+  .care-motion-ready .care-motion-differential:nth-child(3) { --care-differential-delay: 520ms; }
+
+  .care-motion-ready .care-motion-cta { transition: opacity 560ms ease-out 650ms, transform 560ms cubic-bezier(0.22, 1, 0.36, 1) 650ms, background-color 250ms ease; }
+  .care-motion-ready .care-motion-editorial { transition: opacity 580ms ease-out 800ms, transform 580ms cubic-bezier(0.22, 1, 0.36, 1) 800ms; }
+  .care-motion-ready .care-motion-photo-main { transition: opacity 1000ms ease-out 200ms, transform 1000ms cubic-bezier(0.16, 1, 0.3, 1) 200ms; transform-origin: center; }
+  .care-motion-ready .care-motion-photo-small-1 { transition: opacity 780ms ease-out 400ms, transform 780ms cubic-bezier(0.22, 1, 0.36, 1) 400ms; }
+  .care-motion-ready .care-motion-photo-small-2 { transition: opacity 780ms ease-out 510ms, transform 780ms cubic-bezier(0.22, 1, 0.36, 1) 510ms; }
+  .care-motion-ready .care-motion-photo-small-3 { transition: opacity 780ms ease-out 620ms, transform 780ms cubic-bezier(0.22, 1, 0.36, 1) 620ms; }
+  .care-motion-ready .care-motion-handwritten { transition: opacity 600ms ease-out 900ms, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 900ms; }
+
+  .care-motion-visible .care-motion-eyebrow,
+  .care-motion-visible .care-motion-heading,
+  .care-motion-visible .care-motion-copy,
+  .care-motion-visible .care-motion-differential,
+  .care-motion-visible .care-motion-cta,
+  .care-motion-visible .care-motion-editorial,
+  .care-motion-visible .care-motion-photo,
+  .care-motion-visible .care-motion-handwritten {
+    opacity: 1;
+    transform: none;
+  }
+
+  .care-motion-settled .care-motion-cta { transition: background-color 250ms ease, transform 250ms ease; }
+  .care-motion-photo-image { transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+  /* Section 06 — Location */
+  .location-motion-ready .location-motion-eyebrow,
+  .location-motion-ready .location-motion-heading,
+  .location-motion-ready .location-motion-copy,
+  .location-motion-ready .location-motion-contact,
+  .location-motion-ready .location-motion-ctas,
+  .location-motion-ready .location-motion-hours,
+  .location-motion-ready .location-motion-editorial,
+  .location-motion-ready .location-motion-map,
+  .location-motion-ready .location-motion-map-overlay,
+  .location-motion-ready .location-motion-map-detail,
+  .location-motion-ready .location-motion-map-caption {
+    opacity: 0;
+  }
+
+  .location-motion-ready .location-motion-eyebrow,
+  .location-motion-ready .location-motion-copy,
+  .location-motion-ready .location-motion-contact,
+  .location-motion-ready .location-motion-hours,
+  .location-motion-ready .location-motion-editorial {
+    transform: translateY(8px);
+  }
+
+  .location-motion-ready .location-motion-heading,
+  .location-motion-ready .location-motion-ctas,
+  .location-motion-ready .location-motion-map-detail {
+    transform: translateY(12px);
+  }
+
+  .location-motion-ready .location-motion-map { transform: translateY(14px) scale(0.99); transform-origin: center; }
+  .location-motion-ready .location-motion-map-overlay { transform: translateY(-8px); }
+  .location-motion-ready .location-motion-map-caption { transform: translateX(8px); }
+
+  .location-motion-ready .location-motion-eyebrow { transition: opacity 500ms ease-out, transform 500ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .location-motion-ready .location-motion-heading { transition: opacity 760ms ease-out 100ms, transform 760ms cubic-bezier(0.22, 1, 0.36, 1) 100ms; }
+  .location-motion-ready .location-motion-copy { transition: opacity 600ms ease-out 220ms, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 220ms; }
+  .location-motion-ready .location-motion-contact { --location-contact-delay: 360ms; transition: opacity 540ms ease-out var(--location-contact-delay), transform 540ms cubic-bezier(0.22, 1, 0.36, 1) var(--location-contact-delay); }
+  .location-motion-ready .location-motion-contact:nth-child(2) { --location-contact-delay: 440ms; }
+  .location-motion-ready .location-motion-ctas { transition: opacity 580ms ease-out 550ms, transform 580ms cubic-bezier(0.22, 1, 0.36, 1) 550ms; }
+  .location-motion-ready .location-motion-hours { transition: opacity 540ms ease-out 650ms, transform 540ms cubic-bezier(0.22, 1, 0.36, 1) 650ms; }
+  .location-motion-ready .location-motion-editorial { transition: opacity 540ms ease-out 850ms, transform 540ms cubic-bezier(0.22, 1, 0.36, 1) 850ms; }
+  .location-motion-ready .location-motion-map { transition: opacity 950ms ease-out 250ms, transform 950ms cubic-bezier(0.16, 1, 0.3, 1) 250ms; }
+  .location-motion-ready .location-motion-map-overlay { transition: opacity 660ms ease-out 450ms, transform 660ms cubic-bezier(0.22, 1, 0.36, 1) 450ms; }
+  .location-motion-ready .location-motion-map-detail { transition: opacity 700ms ease-out 650ms, transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 650ms; }
+  .location-motion-ready .location-motion-map-caption { transition: opacity 600ms ease-out 900ms, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 900ms; }
+
+  .location-motion-visible .location-motion-eyebrow,
+  .location-motion-visible .location-motion-heading,
+  .location-motion-visible .location-motion-copy,
+  .location-motion-visible .location-motion-contact,
+  .location-motion-visible .location-motion-ctas,
+  .location-motion-visible .location-motion-hours,
+  .location-motion-visible .location-motion-editorial,
+  .location-motion-visible .location-motion-map,
+  .location-motion-visible .location-motion-map-overlay,
+  .location-motion-visible .location-motion-map-detail,
+  .location-motion-visible .location-motion-map-caption {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Footer */
+  .footer-motion-ready .footer-motion-logo,
+  .footer-motion-ready .footer-motion-headline,
+  .footer-motion-ready .footer-motion-brand-copy,
+  .footer-motion-ready .footer-motion-contact-heading,
+  .footer-motion-ready .footer-motion-contact-item,
+  .footer-motion-ready .footer-motion-nav,
+  .footer-motion-ready .footer-motion-cta-card,
+  .footer-motion-ready .footer-motion-editorial,
+  .footer-motion-ready .footer-motion-bottom-content {
+    opacity: 0;
+  }
+
+  .footer-motion-ready .footer-motion-headline,
+  .footer-motion-ready .footer-motion-cta-card { transform: translateY(14px); }
+  .footer-motion-ready .footer-motion-brand-copy,
+  .footer-motion-ready .footer-motion-contact-heading,
+  .footer-motion-ready .footer-motion-nav,
+  .footer-motion-ready .footer-motion-editorial,
+  .footer-motion-ready .footer-motion-bottom-content { transform: translateY(8px); }
+  .footer-motion-ready .footer-motion-contact-item { transform: translateY(6px); }
+  .footer-motion-ready .footer-motion-cta-card { transform: translateY(14px) scale(0.99); transform-origin: center; }
+  .footer-motion-ready .footer-motion-bottom-line { transform: scaleX(0); }
+
+  .footer-motion-ready .footer-motion-logo { transition: opacity 560ms ease-out; }
+  .footer-motion-ready .footer-motion-headline { transition: opacity 700ms ease-out 100ms, transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 100ms; }
+  .footer-motion-ready .footer-motion-brand-copy { transition: opacity 580ms ease-out 220ms, transform 580ms cubic-bezier(0.22, 1, 0.36, 1) 220ms; }
+  .footer-motion-ready .footer-motion-contact-heading { transition: opacity 500ms ease-out 200ms, transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 200ms; }
+  .footer-motion-ready .footer-motion-contact-item { --footer-contact-delay: 300ms; transition: opacity 520ms ease-out var(--footer-contact-delay), transform 520ms cubic-bezier(0.22, 1, 0.36, 1) var(--footer-contact-delay), color 250ms ease; }
+  .footer-motion-ready .footer-motion-contact-item:nth-child(2) { --footer-contact-delay: 380ms; }
+  .footer-motion-ready .footer-motion-contact-item:nth-child(3) { --footer-contact-delay: 460ms; }
+  .footer-motion-ready .footer-motion-nav { transition: opacity 620ms ease-out 400ms, transform 620ms cubic-bezier(0.22, 1, 0.36, 1) 400ms; }
+  .footer-motion-ready .footer-motion-cta-card { transition: opacity 820ms ease-out 300ms, transform 820ms cubic-bezier(0.16, 1, 0.3, 1) 300ms, border-color 250ms ease; }
+  .footer-motion-ready .footer-motion-editorial { transition: opacity 560ms ease-out 700ms, transform 560ms cubic-bezier(0.22, 1, 0.36, 1) 700ms; }
+  .footer-motion-ready .footer-motion-bottom-line { transition: transform 820ms cubic-bezier(0.22, 1, 0.36, 1) 900ms; }
+  .footer-motion-ready .footer-motion-bottom-content { transition: opacity 550ms ease-out 1000ms, transform 550ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms; }
+
+  .footer-motion-visible .footer-motion-logo,
+  .footer-motion-visible .footer-motion-headline,
+  .footer-motion-visible .footer-motion-brand-copy,
+  .footer-motion-visible .footer-motion-contact-heading,
+  .footer-motion-visible .footer-motion-contact-item,
+  .footer-motion-visible .footer-motion-nav,
+  .footer-motion-visible .footer-motion-cta-card,
+  .footer-motion-visible .footer-motion-editorial,
+  .footer-motion-visible .footer-motion-bottom-content {
+    opacity: 1;
+    transform: none;
+  }
+
+  .footer-motion-visible .footer-motion-bottom-line { transform: scaleX(1); }
+}
+
+@media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
+  .reviews-motion-settled .reviews-motion-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--brand-primary) 28%, var(--border));
+  }
+
+  .reviews-motion-card:hover .reviews-motion-avatar { transform: scale(1.02); }
+  .treatments-motion-settled .treatments-motion-cta:hover,
+  .care-motion-settled .care-motion-cta:hover { transform: translateY(-2px); }
+  .care-motion-settled .care-motion-photo:hover .care-motion-photo-image { transform: scale(1.01); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-motion-image,
+  .hero-motion-eyebrow,
+  .hero-motion-title-primary,
+  .hero-motion-title-accent,
+  .hero-motion-copy,
+  .hero-motion-ctas,
+  .hero-motion-microcopy,
+  .hero-counter-line,
+  .hero-counter-label {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-counter-animated {
+    display: none;
+  }
+
+  .hero-counter-reduced {
+    display: inline-block;
+  }
+
+  .results-case-image,
+  .results-motion-cta,
+  .results-motion-tab-underline,
+  .results-motion-footer-line,
+  .results-motion-editorial::before {
+    transform: none !important;
+  }
+
+  .reviews-motion-card,
+  .reviews-motion-avatar,
+  .reviews-motion-rating-star,
+  .treatments-motion-image,
+  .treatments-motion-cta,
+  .care-motion-photo,
+  .care-motion-photo-image,
+  .care-motion-cta,
+  .location-motion-map,
+  .location-motion-map-overlay,
+  .footer-motion-cta-card,
+  .footer-motion-bottom-line {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
